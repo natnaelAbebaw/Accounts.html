@@ -1,0 +1,15 @@
+//
+// react-variables.scss
+// React specific overrides
+//
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$color-mode-type: media-query !default; // `data` or `media-query`
+
+// Paths
+
+$path-to-fonts: '../../public/fonts' !default;
+$path-to-img: '/img' !default;
