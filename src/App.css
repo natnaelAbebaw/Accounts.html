@@ -1,42 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.custom-width {
+  width: 100%;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.z-index-5 {
+  z-index: 5;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 992px) {
+  .custom-width {
+    width: 90%;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 1200px) {
+  .custom-width {
+    width: 85%;
   }
 }
 
-.card {
-  padding: 2em;
+@media (prefers-color-scheme: light) {
+  .mainHeading {
+    color: #fff;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@media (prefers-color-scheme: light) {
+  .nav-link-top-bar:hover,
+  .navbar-nav .nav-link-top-bar.active,
+  .nav-link-top-bar > a:hover:first-child,
+  .nav-link-top-bar > a:active:first-child {
+    color: #fff !important;
+  }
+
+  .nav-link-top-bar > a:not(.active):hover,
+  .nav-link-top-bar a:not(.active):focus {
+    color: #fff !important;
+  }
+}
+
+.btn-no-border-at-end {
+  border-right: 1px solid #fff;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.modal-dialog-centered {
+  width: 100% !important;
+  max-width: 700px;
+}
+
+.btn-no-border-at-start {
+  border-right: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.modal-card {
+  max-height: 73vh;
+  height: 73vh !important;
+}
+
+.modal-card > .card-body {
+  max-height: 73vh;
+  height: 73% !important;
+}
+
+.card-height {
+  height: 9vh;
+}
+
+.position-watchlist {
+  top: 10px;
+  right: 10px;
+
+  svg {
+    color: #f7cc5f;
+    font-size: 1.5rem;
+  }
+}
+
+.btn-costom-secondary {
+  background: #fffdf6;
+  color: #2c2c2c;
+  border: 1px solid #f7cc5f !important;
+}
+
+.btn-costom-secondary:hover {
+  background: rgb(255, 236, 179);
+  color: #2c2c2c;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  border-color: #f7cc5f;
+  border-bottom-width: 1.5px;
+}
+/* .card-height {
+  height: 500px !important;
+} */
+.form-check-input:checked {
+  background-color: #f7cc5f;
+  border-color: #f7c33f;
+}
+
+body:has(.delete-modal) .modal-backdrop {
+  z-index: 1055;
+}
+
+.modal-width {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
 }

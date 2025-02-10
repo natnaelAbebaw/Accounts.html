@@ -1,114 +1,95 @@
-import FeatherIcon from 'feather-icons-react';
-import React, { useMemo } from 'react';
-import { Button, Card, CloseButton, Col, Form, InputGroup, ListGroup, Modal, Row } from 'react-bootstrap';
-import { useGlobalFilter, usePagination, useTable } from 'react-table';
-import { Avatar } from '../components';
-import { getStatusColor } from '../helpers';
+import FeatherIcon from "feather-icons-react";
+import React, { useMemo, useState } from "react";
+import {
+  Button,
+  Card,
+  CloseButton,
+  Col,
+  Form,
+  ListGroup,
+  Modal,
+  Nav,
+  Row,
+} from "react-bootstrap";
+import { useGlobalFilter, usePagination, useTable } from "react-table";
+import { Header } from "../components";
+import { MdStar } from "react-icons/md";
+import InventoryTable from "../UIs/InventoryTable";
+import UserSettings from "../UIs/UserSettings";
+import UserProfile from "../UIs/UserProfile";
+import Dealership from "../UIs/Dealership";
 
 export default function ModalMembers({ visible, onDismiss, ...props }) {
-  const data = useMemo(
-    () => [
-      {
-        imgSrc: '/img/avatars/profiles/avatar-5.jpg',
-        status: 'Online',
-        title: 'Miyah Myles',
-      },
-      {
-        imgSrc: '/img/avatars/profiles/avatar-6.jpg',
-        status: 'Online',
-        title: 'Ryu Duke',
-      },
-      {
-        imgSrc: '/img/avatars/profiles/avatar-7.jpg',
-        status: 'Busy',
-        title: 'Glen Rouse',
-      },
-      {
-        imgSrc: '/img/avatars/profiles/avatar-8.jpg',
-        status: 'Offline',
-        title: 'Grace Gross',
-      },
-    ],
-    []
-  );
-
-  const columns = useMemo(
-    () => [
-      {
-        accessor: 'imgSrc',
-      },
-      {
-        accessor: 'status',
-      },
-      {
-        accessor: 'title',
-      },
-    ],
-    []
-  );
-
-  const { page, prepareRow, setGlobalFilter } = useTable(
-    {
-      columns,
-      data,
-    },
-    useGlobalFilter,
-    usePagination
-  );
-
+  const [currentTab, setCurrentTab] = useState("profile");
+  console.log(currentTab);
   return (
-    <Modal show={visible} onHide={onDismiss} centered {...props}>
-      <Card className="modal-card">
-        {/* <Card.Header>
-          <h4 className="card-header-title">Add a member</h4>
-          <CloseButton onClick={onDismiss} />
-        </Card.Header>
-        <Card.Header>
-          <form>
-            <InputGroup className="input-group-merge input-group-flush input-group-reverse">
-              <Form.Control type="search" placeholder="Search" onChange={(e) => setGlobalFilter(e.target.value ? e.target.value : undefined)} />
-              <InputGroup.Text>
-                <FeatherIcon icon="search" size="1em" />
-              </InputGroup.Text>
-            </InputGroup>
-          </form>
-        </Card.Header> */}
+    <Modal
+      show={visible}
+      onHide={onDismiss}
+      centered
+      {...props}
+      className="w-100"
+    >
+      <Card className="modal-card w-100">
         <Card.Body>
-          <ListGroup className="list-group-flush my-n3">
-            {page.map((row, i) => {
-              prepareRow(row);
+          <ListGroup className="list-group-flush px-3">
+            <div className="d-flex justify-content-between align-items-center ">
+              <Header className="mb-0">
+                <h3 className="mb-0">Kyle LeSueur</h3>
+              </Header>
 
-              const [imgSrc, status, title] = row.cells.map((cell) => cell.value);
+              <CloseButton className="fs-3" onClick={onDismiss} />
+            </div>
+            <Nav variant="tabs" className="nav-tabs-sm mb-4">
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => setCurrentTab("profile")}
+                  href="#!"
+                  active={currentTab === "profile"}
+                >
+                  Profile
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => setCurrentTab("dealership")}
+                  active={currentTab === "dealership"}
+                  href="#!"
+                >
+                  Dealership
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  onClick={() => setCurrentTab("authetications")}
+                  href="#!"
+                  active={currentTab === "authetications"}
+                >
+                  Auth and DMS info
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  active={currentTab === "setting"}
+                  onClick={() => setCurrentTab("setting")}
+                  href="#!"
+                >
+                  Setting
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
 
-              return (
-                // <ListGroup.Item {...row.getRowProps()}>
-                //   <Row className="align-items-center">
-                //     {/* <Col xs="auto">
-                //       <Avatar href="/profile-posts">
-                //         <Avatar.Image className="rounded-circle" src={imgSrc} alt={title} />
-                //       </Avatar>
-                //     </Col>
-                //     <Col className="ms-n2">
-                //       <h4 className="mb-1 name">
-                //         <a href="/profile-posts">{title}</a>
-                //       </h4>
-                //       <p className="small mb-0">
-                //         <span className={`text-${getStatusColor(status)}`}>●</span> {status}
-                //       </p>
-                //     </Col>
-                //     <Col xs="auto">
-                //       <Button variant="white" size="sm">
-                //         Add
-                //       </Button>
-                //     </Col> */}
-                //   </Row>
-                // </ListGroup.Item>
-                <div>
+            {currentTab === "profile" && <UserProfile />}
 
-                
-                </div>
-              );
-            })}
+            {currentTab === "dealership" && <Dealership />}
+
+            {currentTab === "authetications" && (
+              <Row>
+                <InventoryTable />
+              </Row>
+            )}
+
+            {currentTab === "setting" && <UserSettings />}
           </ListGroup>
         </Card.Body>
       </Card>

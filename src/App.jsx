@@ -5,6 +5,9 @@ import Tables from './components/Table'
 import CRMContactsTable from './components/CRMTable';
 import { contacts } from "./data";
 import Modals from './UIs/Modal';
+import Navbars from './UIs/NavBar';
+import { Container } from 'react-bootstrap';
+import Footer from './UIs/Footer';
 
 const pagesOptions = [
   { value: 5, label: "5 per page" },
@@ -41,17 +44,18 @@ function App() {
 
 
   return (
-    <>
-  
+    <div className='w-100 min-vh-100'>
+    <Navbars  />
+   
      <CRMContactsTable
                 contacts={contacts}
                 leadScoreOptions={leadScoreOptions}
                 pagesOptions={pagesOptions}
                 titleOptions={titleOptions}
               />
-
-    <Modals />
-    </>
+   
+  <Footer />
+    </div>
   )
 }
 
